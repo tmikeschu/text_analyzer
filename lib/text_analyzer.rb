@@ -12,11 +12,11 @@ class TextAnalyzer
   end
 
   def big_words(length = 10)
-    words.select{ |word| word.length > length }.uniq.join(", ")
+    words.select { |word| word.length > length }.uniq.join(", ")
   end
 
   def small_words(length = 5)
-    words.select{ |word| word.length < length }.uniq.join(", ")
+    words.select { |word| word.length < length }.uniq.join(", ")
   end
 
   def most_frequent_word
@@ -24,11 +24,11 @@ class TextAnalyzer
   end
 
   def word_with_most_vowels
-    words.max_by { |word| word.scan(/[aeiou]/).length  }
+    words.max_by { |word| word.scan(/[aeiou]/).length }
   end
 
   def word_with_fewest_vowels
-    words.min_by { |word| word.scan(/[aeiou]/).length  }
+    words.min_by { |word| word.scan(/[aeiou]/).length }
   end
 
   def top_words(number = 5)
@@ -44,7 +44,7 @@ class TextAnalyzer
   end
 
   def sentence_with_most_words
-    sentence = sentences.max_by { |sentence| sentence.split(" ").count } 
+    sentence = sentences.max_by { |sentence| sentence.split(" ").count }
     [sentences.index(sentence), sentence.split(" ").count]
   end
 
@@ -53,7 +53,7 @@ class TextAnalyzer
   end
 
   def paragraph_with_most_words
-    paragraph = paragraphs.max_by { |text| text.split(" ").count } 
+    paragraph = paragraphs.max_by { |text| text.split(" ").count }
     [paragraphs.index(paragraph), paragraph.split(" ").count]
   end
 
