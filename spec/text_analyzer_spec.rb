@@ -1,14 +1,14 @@
-require "text_analytics"
+require "text_analyzer"
 require 'pry-state'
 
-RSpec.describe TextAnalytics do
+RSpec.describe TextAnalyzer do
   let(:text) { File.read("./data/hipster_ipsum.txt") }
-  subject { TextAnalytics.new(text) }
+  subject { TextAnalyzer.new(text) }
 
   describe "#word_counts" do
     it "returns a hash of word keys pointing to frequency count" do
       words = "me me you you you them"
-      analyzer = TextAnalytics.new(words)
+      analyzer = TextAnalyzer.new(words)
       expected = {
         "you" => 3,
         "me" => 2,
