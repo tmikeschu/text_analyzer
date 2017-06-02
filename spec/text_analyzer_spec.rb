@@ -19,6 +19,18 @@ RSpec.describe TextAnalyzer do
     end
   end
 
+  describe "#character_counts" do
+    it "returns a hash of character keys pointing to frequency count" do
+      words = "There are many things we can do with zippers, but can we eat them raw?"
+      analyzer = TextAnalyzer.new(words)
+      expected = {
+        "T"=>1, "h"=>4, "e"=>8, "r"=>4, " "=>14, "a"=>6, "m"=>2, "n"=>4, "y"=>1, "t"=>5, "i"=>3, "g"=>1, "s"=>2, "w"=>4, "c"=>2, "d"=>1, "o"=>1, "z"=>1, "p"=>2, ","=>1, "b"=>1, "u"=>1, "?"=>1
+      }
+      character_counts = analyzer.character_counts
+      expect(character_counts).to eq expected
+    end
+  end
+
   describe "#big_words" do
     it "returns a collection of words greater than 10 characters" do
       big_words = subject.big_words
@@ -106,6 +118,26 @@ RSpec.describe TextAnalyzer do
   describe "#paragraph_with_most_words" do
     it "returns index of paragraph with most words and word count" do
       expect(subject.paragraph_with_most_words).to eq [3, 113]
+    end
+  end
+
+  describe "#words_with_even_chars" do
+    it "returns an array of words with even characters" do
+      words = "There are many things we can do with zippers, but can we eat them raw?"
+      analyzer = TextAnalyzer.new(words)
+      expected = ["many", "things", "we", "do", "with", "zippers,", "we", "them", "raw?"]
+      even_words = analyzer.words_with_even_chars
+      expect(even_words).to eq expected
+    end
+  end
+
+  describe "#words_with_odd_chars" do
+    it "returns an array of words with even characters" do
+      words = "There are many things we can do with zippers, but can we eat them raw?"
+      analyzer = TextAnalyzer.new(words)
+      expected = ["There", "are", "can", "but", "can", "eat"]
+      odd_words = analyzer.words_with_odd_chars
+      expect(odd_words).to eq expected
     end
   end
 end

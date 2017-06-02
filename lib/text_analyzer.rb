@@ -11,6 +11,13 @@ class TextAnalyzer
     end
   end
 
+  def character_counts
+    text.split("").reduce({}) do |final, character|
+      final[character] = (final[character] || 0) + 1
+      final
+    end
+  end
+
   def big_words(length = 10)
     words.select { |word| word.length > length }.uniq.join(", ")
   end
@@ -55,6 +62,14 @@ class TextAnalyzer
   def paragraph_with_most_words
     paragraph = paragraphs.max_by { |text| text.split(" ").count }
     [paragraphs.index(paragraph), paragraph.split(" ").count]
+  end
+
+  def words_with_even_chars
+    words.select { |word| word.length.even? }
+  end
+
+  def words_with_odd_chars
+    words.reject { |word| word.length.even? }
   end
 
   private
